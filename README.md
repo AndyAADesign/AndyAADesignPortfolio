@@ -1,31 +1,35 @@
-# Andrés Alvarez Portfolio — v1
+# Andrés Álvarez Portfolio — GitHub Pages v2
 
-Static portfolio prepared for GitHub Pages. No build step or framework is required.
+This folder is ready to be used as the root of a GitHub Pages repository.
 
-## Publish on GitHub Pages
-1. Create a new GitHub repository (for example `portfolio`).
-2. Upload the contents of this folder to the repository root.
-3. In GitHub: **Settings → Pages → Build and deployment → Deploy from a branch**.
-4. Choose the `main` branch and `/ (root)` folder.
-5. Save. GitHub will provide the public URL.
+## Pages
+- `index.html` — Home
+- `work.html` — Work hub / expandable project index
+- `xapontic.html` — Xapontic case study
+- `lobster-loader.html` — Lobster Loader case study
+- `3d-work.html` — Selected 3D work
+- `about.html` — About + contact
 
-## Before publishing
-- Add your preferred email and LinkedIn in the Contact section in `index.html`.
-- Confirm whether the included Spanish UX/UI CV is the version you want public. Replace `assets/docs/andres-alvarez-cv.pdf` if needed.
-- Review the copy once in browser and make any wording changes you want.
+## Bilingual toggle
+The EN / ES buttons are manual translations, not Google Translate. The choice is saved in the visitor's browser with `localStorage`, so the same language persists between pages.
 
-## Add future work
-The homepage is deliberately modular.
-- Add new full case studies inside the **Featured work** section by duplicating a `.project-card`.
-- Add ongoing work inside **Current work** until it has enough evidence to become a full case study.
-- Add supporting art / experiments inside **3D & real-time** or create a new supporting section using the same card pattern.
+To translate future text, add both attributes to the element:
 
-## Credits to preserve
-For the Lobster Loader package set:
-- Andrés Álvarez — 3D modeling + UVs
-- Athena Wang — concept art
-- Leo Daynard — textures
+```html
+<p data-en="English copy" data-es="Texto en español">English copy</p>
+```
 
-For Yoolmi:
-- Andrés Álvarez — UX/UI / flow / narrative integration contributions shown here
-- Character and environmental art — project team (not Andrés)
+The JavaScript in `assets/js/site.js` handles the switch automatically.
+
+## Publish / update
+1. Unzip this folder.
+2. Open your `theDIVIDERyt.github.io` repository.
+3. Replace the existing site files with the CONTENTS of this folder (do not upload the outer folder itself).
+4. Commit to `main` and push.
+5. GitHub Pages will redeploy automatically.
+
+## Before final launch polish
+- Replace `assets/docs/andres-alvarez-cv.pdf` with the exact CV you want public.
+- Add your preferred email and LinkedIn to `about.html` and/or `index.html` when ready.
+- New case studies can be added as new `.html` files and linked from `work.html`.
+- Current/in-progress work can stay on `work.html` without needing a full case study.

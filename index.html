@@ -3,23 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Portfolio of Andrés Álvarez — UX/UI Designer, Game UX Designer and interactive designer.">
-  <title>Andrés Álvarez — UX/UI & Game UX</title>
+  <meta name="description" data-en="Portfolio of Andrés Álvarez — UX/UI Designer, Game UX Designer and interactive designer." data-es="Portafolio de Andrés Álvarez — Diseñador UX/UI, Game UX y diseñador interactivo." content="Portfolio of Andrés Álvarez — UX/UI Designer, Game UX Designer and interactive designer.">
+  <title>Andrés Álvarez — UX/UI &amp; Game UX</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
+<body data-title-en="Andrés Álvarez — UX/UI &amp; Game UX" data-title-es="Andrés Álvarez — UX/UI y Game UX">
+
+<a class="skip-link" href="#main" data-en="Skip to content" data-es="Saltar al contenido">Skip to content</a>
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html">Andrés <span>Álvarez</span></a>
-    <button class="menu-btn" aria-expanded="false" aria-label="Open navigation">Menu</button>
-    <nav class="nav-links" aria-label="Primary navigation">
-      <a href="#work">Work</a>
-      <a href="#current">Current Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a class="nav-cta" href="assets/docs/andres-alvarez-cv.pdf" target="_blank" rel="noopener">CV ↗</a>
-    </nav>
+    <div class="nav-right">
+      <button class="menu-btn" aria-expanded="false" aria-label="Open navigation" data-en="Menu" data-es="Menú">Menu</button>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html" data-en="Home" data-es="Inicio">Home</a>
+        <a href="work.html" data-en="Work" data-es="Trabajo">Work</a>
+        <a href="about.html" data-en="About" data-es="Sobre mí">About</a>
+        <a class="nav-cta" href="assets/docs/andres-alvarez-cv.pdf" target="_blank" rel="noopener">CV ↗</a>
+      </nav>
+      <div class="language-toggle" aria-label="Language / Idioma">
+        <button class="lang-button" type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button class="lang-button" type="button" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -27,131 +33,84 @@
   <section class="hero">
     <div class="container">
       <div class="hero-topline reveal">
-        <span class="pill">UX/UI Design</span><span class="pill">Game UX</span><span class="pill">Interactive Design</span><span class="pill">QA-minded systems thinking</span>
+        <span class="pill" data-en="UX/UI Design" data-es="Diseño UX/UI">UX/UI Design</span>
+        <span class="pill" data-en="Game UX" data-es="UX de videojuegos">Game UX</span>
+        <span class="pill" data-en="Interactive Design" data-es="Diseño interactivo">Interactive Design</span>
+        <span class="pill" data-en="QA-minded systems thinking" data-es="Pensamiento de sistemas con enfoque QA">QA-minded systems thinking</span>
       </div>
-      <h1 class="reveal">I design <span>clear systems</span> people want to use.</h1>
+      <h1 class="reveal" data-en-html="I design &lt;span&gt;clear systems&lt;/span&gt; people want to use." data-es-html="Diseño &lt;span&gt;sistemas claros&lt;/span&gt; que la gente quiere usar.">I design <span>clear systems</span> people want to use.</h1>
       <div class="hero-bottom reveal">
-        <p class="lede">I’m Andrés Álvarez, a UX/UI and Game UX designer with a background in interactive design, game development and software QA. I like turning complicated interactions into experiences that feel clear, responsive and intentional.</p>
-        <a class="hero-arrow" href="#work" aria-label="Scroll to featured work">↓</a>
+        <p class="lede" data-en="I’m Andrés Álvarez, a UX/UI and Game UX designer with a background in interactive design, game development and software QA. I turn complicated interactions into experiences that feel clear, responsive and intentional." data-es="Soy Andrés Álvarez, diseñador UX/UI y Game UX con experiencia en diseño interactivo, desarrollo de videojuegos y QA de software. Transformo interacciones complejas en experiencias claras, responsivas e intencionales.">I’m Andrés Álvarez, a UX/UI and Game UX designer with a background in interactive design, game development and software QA. I turn complicated interactions into experiences that feel clear, responsive and intentional.</p>
+        <a class="hero-arrow" href="#featured" aria-label="Scroll to featured work">↓</a>
       </div>
     </div>
   </section>
 
-  <section class="section" id="work">
+  <section class="section" id="featured">
     <div class="container">
       <div class="section-head reveal">
-        <div><div class="kicker">Featured work</div><h2>Case studies</h2></div>
-        <p>Two deep dives showing how I approach structure, interaction, testing, iteration and production — across product UX and game UX.</p>
+        <div><div class="kicker" data-en="Featured work" data-es="Trabajo destacado">Featured work</div><h2 data-en="Case studies" data-es="Casos de estudio">Case studies</h2></div>
+        <p data-en="Two deep dives into how I approach structure, interaction, testing, iteration and production across product UX and game UX." data-es="Dos casos de estudio a profundidad sobre cómo abordo estructura, interacción, pruebas, iteración y producción en UX de producto y Game UX.">Two deep dives into how I approach structure, interaction, testing, iteration and production across product UX and game UX.</p>
       </div>
       <div class="project-grid">
         <a class="project-card reveal" href="xapontic.html">
           <div class="project-media"><img src="assets/images/xapontic/home-web.png" alt="Xapontic responsive website homepage"></div>
-          <div class="project-body">
-            <div>
-              <div class="project-meta"><span class="tag">UX/UI</span><span class="tag">Responsive Web</span><span class="tag">Usability Testing</span><span class="tag">Front-End</span></div>
-              <h3 class="project-title">Xapontic</h3>
-              <p class="project-desc">Building a responsive e-commerce experience from scratch for a Chiapas-based social enterprise — balancing product discovery, storytelling and online ordering.</p>
-            </div><span class="project-link" aria-hidden="true">↗</span>
-          </div>
+          <div class="project-body"><div>
+            <div class="project-meta"><span class="tag">UX/UI</span><span class="tag" data-en="Responsive Web" data-es="Web responsiva">Responsive Web</span><span class="tag" data-en="Usability Testing" data-es="Pruebas de usabilidad">Usability Testing</span><span class="tag">Front-End</span></div>
+            <h3 class="project-title">Xapontic</h3>
+            <p class="project-desc" data-en="A responsive e-commerce experience built from scratch for a Chiapas-based social enterprise, balancing product discovery, storytelling and online ordering." data-es="Una experiencia de e-commerce responsiva creada desde cero para una empresa social de Chiapas, equilibrando descubrimiento de producto, narrativa y pedidos en línea.">A responsive e-commerce experience built from scratch for a Chiapas-based social enterprise, balancing product discovery, storytelling and online ordering.</p>
+          </div><span class="project-link" aria-hidden="true">↗</span></div>
         </a>
-
         <a class="project-card reveal" href="lobster-loader.html">
-          <div class="project-media"><img src="assets/images/lobster/beta-pitch-play.png" alt="Final Lobster Loader gameplay at the centered whale loading grid"></div>
-          <div class="project-body">
-            <div>
-              <div class="project-meta"><span class="tag">Game UX</span><span class="tag">Game Design</span><span class="tag">Project Management</span><span class="tag">Playtesting</span></div>
-              <h3 class="project-title">Lobster Loader</h3>
-              <p class="project-desc">A six-month 3D combo puzzle production shaped through milestone-based playtesting, simplified controls, layered feedback and a deliberate focus on polish.</p>
-            </div><span class="project-link" aria-hidden="true">↗</span>
-          </div>
+          <div class="project-media"><img src="assets/images/lobster/beta-pitch-play.png" alt="Final Lobster Loader gameplay"></div>
+          <div class="project-body"><div>
+            <div class="project-meta"><span class="tag">Game UX</span><span class="tag" data-en="Game Design" data-es="Diseño de juegos">Game Design</span><span class="tag" data-en="Project Management" data-es="Gestión de proyecto">Project Management</span><span class="tag" data-en="Playtesting" data-es="Playtesting">Playtesting</span></div>
+            <h3 class="project-title">Lobster Loader</h3>
+            <p class="project-desc" data-en="A six-month 3D combo puzzle shaped through milestone-based playtesting, simplified controls, layered feedback and a deliberate focus on polish." data-es="Un puzzle 3D de combos desarrollado durante seis meses mediante playtests por hitos, controles simplificados, feedback por capas y un enfoque deliberado en el pulido.">A six-month 3D combo puzzle shaped through milestone-based playtesting, simplified controls, layered feedback and a deliberate focus on polish.</p>
+          </div><span class="project-link" aria-hidden="true">↗</span></div>
         </a>
       </div>
+      <div class="page-actions reveal"><a class="button" href="work.html" data-en="View all work →" data-es="Ver todo el trabajo →">View all work →</a></div>
     </div>
   </section>
 
   <section class="section" id="current">
     <div class="container">
-      <div class="section-head reveal">
-        <div><div class="kicker">In progress</div><h2>Current work</h2></div>
-        <p>This section is intentionally built to grow. Ongoing collaborations can live here until they have enough evidence to become full case studies.</p>
-      </div>
+      <div class="section-head reveal"><div><div class="kicker" data-en="In progress" data-es="En progreso">In progress</div><h2 data-en="Current work" data-es="Trabajo actual">Current work</h2></div><p data-en="A flexible space for collaborations that are still evolving and can become full case studies later." data-es="Un espacio flexible para colaboraciones que siguen evolucionando y que pueden convertirse en casos de estudio completos después.">A flexible space for collaborations that are still evolving and can become full case studies later.</p></div>
       <article class="current-card reveal">
-        <div class="current-copy">
-          <div class="eyebrow"><span class="status-dot"></span>Ongoing · 2026</div>
-          <h3 style="margin-top:14px">Yoolmi</h3>
-          <p class="copy" style="margin-top:18px">UX/UI collaboration on a child-friendly learning app for Mexican Sign Language. I’ve worked on onboarding, login, lesson states, home structure and narrative integration around Yoolmi’s journey.</p>
-          <p class="muted" style="margin-top:16px;font-size:.88rem">UX/UI and flow work by me. Character and environmental art were created by the project team.</p>
-        </div>
-        <div class="phone-strip" aria-label="Yoolmi interface samples">
-          <img src="assets/images/yoolmi/start.png" alt="Yoolmi start screen">
-          <img src="assets/images/yoolmi/login.png" alt="Yoolmi login screen">
-          <img src="assets/images/yoolmi/home.png" alt="Yoolmi learning home screen">
-        </div>
+        <div class="current-copy"><div class="eyebrow"><span class="status-dot"></span><span data-en="Ongoing · 2026" data-es="En curso · 2026">Ongoing · 2026</span></div><h3 style="margin-top:14px">Yoolmi</h3><p class="copy" style="margin-top:18px" data-en="UX/UI collaboration on a child-friendly Mexican Sign Language learning app. My work has included onboarding, login, lesson states, home structure and narrative integration. The project is still evolving." data-es="Colaboración UX/UI en una app infantil para aprender Lengua de Señas Mexicana. Mi trabajo ha incluido onboarding, inicio de sesión, estados de lección, estructura de inicio e integración narrativa. El proyecto sigue evolucionando.">UX/UI collaboration on a child-friendly Mexican Sign Language learning app. My work has included onboarding, login, lesson states, home structure and narrative integration. The project is still evolving.</p><p class="muted" style="margin-top:16px;font-size:.88rem" data-en="UX/UI and flow work by me. Character and environmental art by the project team." data-es="UX/UI y flujos realizados por mí. Arte de personaje y entorno realizado por el equipo del proyecto.">UX/UI and flow work by me. Character and environmental art by the project team.</p></div>
+        <div class="phone-strip"><img src="assets/images/yoolmi/start.png" alt="Yoolmi start screen"><img src="assets/images/yoolmi/login.png" alt="Yoolmi login screen"><img src="assets/images/yoolmi/home.png" alt="Yoolmi home screen"></div>
       </article>
     </div>
   </section>
 
   <section class="section" id="3d">
     <div class="container">
-      <div class="section-head reveal">
-        <div><div class="kicker">Supporting work</div><h2>3D & real-time</h2></div>
-        <p>Selected modeling work that shows the production side of my background. Kept separate from the UX case studies so ownership and intent stay clear.</p>
-      </div>
+      <div class="section-head reveal"><div><div class="kicker" data-en="Supporting work" data-es="Trabajo complementario">Supporting work</div><h2 data-en="3D & real-time" data-es="3D y tiempo real">3D & real-time</h2></div><p data-en="Game-ready props and 3D studies that show the production side of my background without competing with the UX case studies." data-es="Props listos para juego y estudios 3D que muestran mi lado de producción sin competir con los casos de estudio de UX.">Game-ready props and 3D studies that show the production side of my background without competing with the UX case studies.</p></div>
       <div class="art-grid">
-        <article class="art-card reveal">
-          <img src="assets/images/3d/package-lineup.jpg" alt="Lobster Loader package prop lineup">
-          <div class="art-copy">
-            <h3>Lobster Loader — Package Set</h3>
-            <p>Game-ready package props modeled and UV-unwrapped for the final project pipeline, then integrated into the playable build.</p>
-            <p class="credit">My contribution: 3D modeling + UVs · Concept art: Athena Wang · Textures: Leo Daynard</p>
-            <p style="margin-top:14px"><a class="accent-2" href="https://www.artstation.com/artwork/zzOy5D" target="_blank" rel="noopener">View on ArtStation ↗</a></p>
-          </div>
-        </article>
-        <article class="art-card tall reveal">
-          <img src="assets/images/3d/still-life.jpg" alt="Realistic still life 3D render">
-          <div class="art-copy">
-            <h3>Still Life Study</h3>
-            <p>Modeling, materials, lighting and composition study showing a more realistic side of my 3D work.</p>
-            <p style="margin-top:14px"><a class="accent-2" href="https://www.artstation.com/artwork/V8daDR" target="_blank" rel="noopener">View on ArtStation ↗</a></p>
-          </div>
-        </article>
+        <article class="art-card reveal"><img src="assets/images/3d/package-lineup.jpg" alt="Lobster Loader package prop lineup"><div class="art-copy"><h3>Lobster Loader — Package Set</h3><p data-en="Game-ready package props modeled and UV-unwrapped for the final production pipeline." data-es="Props de paquetes listos para juego, modelados y con UVs preparados para el pipeline final de producción.">Game-ready package props modeled and UV-unwrapped for the final production pipeline.</p><p class="credit" data-en="My contribution: 3D modeling + UVs · Concept art: Athena Wang · Textures: Leo Daynard" data-es="Mi contribución: modelado 3D + UVs · Concept art: Athena Wang · Texturas: Leo Daynard">My contribution: 3D modeling + UVs · Concept art: Athena Wang · Textures: Leo Daynard</p></div></article>
+        <article class="art-card tall reveal"><img src="assets/images/3d/still-life.jpg" alt="Still life 3D render"><div class="art-copy"><h3 data-en="Still Life Study" data-es="Estudio de naturaleza muerta">Still Life Study</h3><p data-en="A modeling, materials, lighting and composition study showing a more realistic side of my 3D work." data-es="Un estudio de modelado, materiales, iluminación y composición que muestra un lado más realista de mi trabajo 3D.">A modeling, materials, lighting and composition study showing a more realistic side of my 3D work.</p></div></article>
       </div>
+      <div class="page-actions reveal"><a class="button" href="3d-work.html" data-en="Explore 3D work →" data-es="Explorar trabajo 3D →">Explore 3D work →</a></div>
     </div>
   </section>
 
-  <section class="section" id="about">
+  <section class="section" id="about-preview">
     <div class="container about-grid">
-      <div class="about-facts reveal">
-        <div class="kicker">About</div>
-        <div class="fact"><strong>Interactive Design</strong><span>Universidad Iberoamericana</span></div>
-        <div class="fact"><strong>Game Design</strong><span>Vancouver Film School</span></div>
-        <div class="fact"><strong>Software QA</strong><span>2+ years in games QA, testing and team leadership</span></div>
-        <div class="fact"><strong>Mexico City</strong><span>Open to local and remote opportunities</span></div>
-      </div>
-      <div class="about-copy reveal">
-        <h2>Design, but with implementation in mind.</h2>
-        <p class="lede">My background sits between design and production. I’ve worked in UX/UI, game design, front-end implementation, 3D pipelines and professional software QA.</p>
-        <p class="copy">That combination makes me especially interested in interaction-heavy products: tools, games, internal systems and interfaces where clarity depends on understanding how the system actually works — not just how the screen looks.</p>
-      </div>
+      <div class="about-facts reveal"><div class="kicker" data-en="About" data-es="Sobre mí">About</div><div class="fact"><strong data-en="Interactive Design" data-es="Diseño Interactivo">Interactive Design</strong><span>Universidad Iberoamericana</span></div><div class="fact"><strong data-en="Game Design" data-es="Diseño de Juegos">Game Design</strong><span>Vancouver Film School</span></div><div class="fact"><strong data-en="Software QA" data-es="QA de Software">Software QA</strong><span data-en="2+ years in games QA, testing and team leadership" data-es="2+ años en QA de videojuegos, testing y liderazgo de equipos">2+ years in games QA, testing and team leadership</span></div></div>
+      <div class="about-copy reveal"><h2 data-en="Design, with implementation in mind." data-es="Diseño, pensando en la implementación.">Design, with implementation in mind.</h2><p class="lede" data-en="My background sits between design and production: UX/UI, game design, front-end implementation, 3D pipelines and professional software QA." data-es="Mi experiencia vive entre diseño y producción: UX/UI, diseño de juegos, implementación front-end, pipelines 3D y QA profesional de software.">My background sits between design and production: UX/UI, game design, front-end implementation, 3D pipelines and professional software QA.</p><div class="page-actions"><a class="button" href="about.html" data-en="More about me →" data-es="Más sobre mí →">More about me →</a></div></div>
     </div>
   </section>
 
   <section class="section" id="contact">
-    <div class="container">
-      <div class="contact-panel reveal">
-        <div class="kicker">Contact</div>
-        <h2 style="margin-top:14px">Let’s build something clear, useful and memorable.</h2>
-        <div class="contact-actions">
-          <a class="button primary" href="assets/docs/andres-alvarez-cv.pdf" target="_blank" rel="noopener">View CV ↗</a>
-          <a class="button" href="https://www.artstation.com/artwork/xYGQ4R" target="_blank" rel="noopener">More 3D work ↗</a>
-        </div>
-        <p class="muted" style="margin-top:20px;font-size:.88rem">Before publishing, add your preferred email and LinkedIn here. I left them out of this build rather than guessing.</p>
-      </div>
-    </div>
+    <div class="container"><div class="contact-panel reveal"><div class="kicker" data-en="Contact" data-es="Contacto">Contact</div><h2 style="margin-top:14px" data-en="Let’s build something clear, useful and memorable." data-es="Construyamos algo claro, útil y memorable.">Let’s build something clear, useful and memorable.</h2><div class="contact-actions"><a class="button primary" href="assets/docs/andres-alvarez-cv.pdf" target="_blank" rel="noopener" data-en="View CV ↗" data-es="Ver CV ↗">View CV ↗</a><a class="button" href="https://github.com/theDIVIDERyt" target="_blank" rel="noopener">GitHub ↗</a><a class="button" href="https://www.artstation.com/artwork/zzOy5D" target="_blank" rel="noopener">ArtStation ↗</a></div></div></div>
   </section>
 </main>
 
-<footer class="footer"><div class="container footer-row"><span>© 2026 Andrés Álvarez</span><span>UX/UI · Game UX · Interactive Design</span></div></footer>
+<footer class="footer"><div class="container footer-row">
+  <span>© 2026 Andrés Álvarez</span>
+  <span data-en="UX/UI · Game UX · Interactive Design" data-es="UX/UI · UX de videojuegos · Diseño interactivo">UX/UI · Game UX · Interactive Design</span>
+</div></footer>
 <script src="assets/js/site.js"></script>
 </body>
 </html>
