@@ -209,3 +209,49 @@ document.querySelectorAll('.quote-carousel').forEach(carousel => {
   show(0);
   start();
 });
+
+
+// Filterable project index on Work page.
+const filterToolbar = document.querySelector('.project-filters');
+if (filterToolbar) {
+  const filterButtons = [...filterToolbar.querySelectorAll('[data-filter]')];
+  const projectCards = [...document.querySelectorAll('.filter-project-card')];
+  const emptyState = document.querySelector('#filter-empty');
+
+  function normalizeFilter(value) {
+    return filterButtons.some(button => button.dataset.filter === value) ? value : 'all';
+  }
+
+  function applyProjectFilter(rawFilter, updateHash = true) {
+    const filter = normalizeFilter(rawFilter);
+    let visibleCount = 0;
+
+    filterButtons.forEach(button => {
+      const active = button.dataset.filter === filter;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+
+    projectCards.forEach(card => {
+      const categories = (card.dataset.categories || '').split(/\s+/);
+      const visible = filter === 'all' || categories.includes(filter);
+      card.classList.toggle('is-filtered-out', !visible);
+      card.hidden = !visible;
+      if (visible) visibleCount += 1;
+    });
+
+    if (emptyState) emptyState.hidden = visibleCount !== 0;
+
+    if (updateHash) {
+      const next = filter === 'all' ? `${location.pathname}${location.search}` : `#${filter}`;
+      history.replaceState(null, '', next);
+    }
+  }
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => applyProjectFilter(button.dataset.filter));
+  });
+
+  const initialFilter = location.hash ? location.hash.slice(1) : 'all';
+  applyProjectFilter(initialFilter, false);
+}
