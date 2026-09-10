@@ -36,7 +36,7 @@ body::before {
   background-size: 48px 48px;
   mask-image: linear-gradient(to bottom, black, transparent 70%);
 }
-img { display: block; width: 100%; }
+img { display: block; width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 button, a { -webkit-tap-highlight-color: transparent; }
 
@@ -1047,5 +1047,280 @@ body.lightbox-open { overflow: hidden; }
   }
   .still-life-gallery .gallery-card:not(.still-life-main) img {
     height: 220px;
+  }
+}
+
+
+/* v9: strict no-stretch image handling
+   Every image either keeps its natural aspect ratio or sits inside a frame
+   using object-fit. No image is distorted to fit a box. */
+
+/* Natural-ratio images */
+.figure img,
+.phone-strip img,
+.yoolmi-mini-strip img,
+.milestone-grid img {
+  height: auto !important;
+  aspect-ratio: auto !important;
+}
+
+.phone-strip,
+.yoolmi-mini-strip {
+  justify-items: center;
+}
+
+.phone-strip img,
+.yoolmi-mini-strip img {
+  width: auto !important;
+  max-width: 100%;
+}
+
+/* Framed images: box can be fixed, image itself is never stretched. */
+.gallery-media,
+.art-media {
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: #0d1016;
+}
+
+.gallery-media img,
+.art-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  aspect-ratio: auto !important;
+}
+
+/* 3D page frames */
+.package-gallery .gallery-media {
+  height: 210px;
+}
+.still-life-gallery .still-life-main .gallery-media {
+  height: 360px;
+}
+.still-life-gallery .gallery-card:not(.still-life-main) .gallery-media {
+  height: 205px;
+}
+.rolex-gallery .gallery-media {
+  height: 230px;
+}
+
+/* Homepage 3D previews: compact crop, never distortion. */
+.home-3d-grid .art-media {
+  height: 205px;
+}
+.home-3d-grid .art-media img {
+  object-fit: cover !important;
+}
+.home-3d-grid .art-card:nth-child(1) .art-media img {
+  object-position: center 48% !important;
+}
+.home-3d-grid .art-card:nth-child(2) .art-media img {
+  object-position: center 38% !important;
+}
+.home-3d-grid .art-card:nth-child(3) .art-media img {
+  object-position: center 36% !important;
+}
+
+/* Work-page 3D preview */
+.mini-card > img {
+  height: auto !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+}
+
+/* Existing cover-style areas still crop intentionally, but preserve ratio. */
+.project-media img,
+.case-cover img,
+.about-portrait img {
+  object-fit: cover !important;
+}
+
+/* Disable older direct-image height rules now that fixed height lives on wrappers. */
+.package-gallery .gallery-card img,
+.still-life-gallery .still-life-main img,
+.still-life-gallery .gallery-card:not(.still-life-main) img,
+.rolex-gallery .gallery-card img,
+.home-3d-grid .art-card img {
+  height: 100% !important;
+  max-height: none !important;
+}
+
+@media (max-width: 980px) {
+  .package-gallery .gallery-media { height: 200px; }
+  .rolex-gallery .gallery-media { height: 220px; }
+  .still-life-gallery .still-life-main .gallery-media { height: 340px; }
+  .still-life-gallery .gallery-card:not(.still-life-main) .gallery-media { height: 200px; }
+}
+
+@media (max-width: 720px) {
+  .package-gallery .gallery-media,
+  .rolex-gallery .gallery-media {
+    height: 220px;
+  }
+  .still-life-gallery .still-life-main .gallery-media {
+    height: 320px;
+  }
+  .still-life-gallery .gallery-card:not(.still-life-main) .gallery-media {
+    height: 210px;
+  }
+  .home-3d-grid .art-media {
+    height: 190px;
+  }
+}
+
+
+/* v10: compact featured case studies, repaired still-life feature, link icons */
+
+/* Featured case studies should read as a pair rather than two oversized rows. */
+.featured-project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+.featured-project-grid .project-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-project-grid .project-media {
+  aspect-ratio: 16 / 10;
+  flex: 0 0 auto;
+}
+
+.featured-project-grid .project-body {
+  padding: 22px;
+  gap: 18px;
+  flex: 1;
+}
+
+.featured-project-grid .project-title {
+  font-size: clamp(1.9rem, 3vw, 3.15rem);
+}
+
+.featured-project-grid .project-desc {
+  font-size: .93rem;
+  line-height: 1.55;
+}
+
+.featured-project-grid .project-link {
+  width: 44px;
+  height: 44px;
+  font-size: 1.05rem;
+}
+
+/* Xapontic preview remains anchored to the top so the header is visible. */
+.featured-project-grid .xapontic-preview {
+  object-position: center top !important;
+}
+
+/* Still life:
+   show the COMPLETE portrait render instead of cropping into the wall.
+   The feature is now a compact split card, so it stays important without
+   consuming a large vertical block. */
+.still-life-feature {
+  display: grid;
+  grid-template-columns: minmax(260px, .82fr) minmax(0, 1.18fr);
+  min-height: 390px;
+}
+
+.still-life-gallery .still-life-feature .gallery-media {
+  height: 390px !important;
+  min-height: 0;
+  background: #0d1016;
+}
+
+.still-life-gallery .still-life-feature .gallery-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.still-life-feature .gallery-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 4vw, 54px);
+}
+
+.still-life-feature .gallery-copy h3 {
+  font-size: clamp(2rem, 3.6vw, 3.5rem);
+}
+
+.still-life-feature .gallery-copy p {
+  max-width: 48ch;
+  font-size: .98rem;
+  line-height: 1.6;
+}
+
+/* Social/contact buttons with lightweight local SVG icons. */
+.button-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.button .brand-icon {
+  opacity: .92;
+}
+
+.button-arrow {
+  margin-left: 1px;
+  transition: transform .2s ease;
+}
+
+.button:hover .button-arrow {
+  transform: translate(2px, -2px);
+}
+
+.contact-actions .button {
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .featured-project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .still-life-feature {
+    grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .featured-project-grid {
+    gap: 18px;
+  }
+
+  .featured-project-grid .project-media {
+    aspect-ratio: 16 / 9;
+  }
+
+  .still-life-feature {
+    display: block;
+    min-height: 0;
+  }
+
+  .still-life-gallery .still-life-feature .gallery-media {
+    height: 360px !important;
+  }
+
+  .still-life-feature .gallery-copy {
+    padding: 22px;
+  }
+
+  .still-life-feature .gallery-copy h3 {
+    font-size: 2rem;
   }
 }
