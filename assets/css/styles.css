@@ -791,3 +791,261 @@ body.lightbox-open { overflow: hidden; }
     padding-bottom: 66px;
   }
 }
+
+
+/* v8: compact page rhythm, updated Yoolmi showcase, shorter 3D galleries */
+
+/* Reduce vertical whitespace site-wide while preserving separation. */
+.section {
+  padding-top: 82px;
+  padding-bottom: 82px;
+}
+.section-tight {
+  padding-top: 58px;
+  padding-bottom: 58px;
+}
+.section-head {
+  margin-bottom: 32px;
+}
+.story-section {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+.supporting-section {
+  padding-top: 68px;
+  padding-bottom: 68px;
+}
+.contact-panel {
+  padding: clamp(28px, 5vw, 58px);
+}
+
+/* Every non-home hero now behaves more like the compact homepage hero:
+   enough room to establish context, but short enough that the next section peeks in. */
+.page-hero {
+  min-height: 46vh;
+  display: grid;
+  align-items: center;
+  padding: 42px 0 28px;
+}
+.page-hero h1 {
+  font-size: clamp(2.8rem, 6.4vw, 6rem);
+}
+.page-hero .lede {
+  margin-top: 18px;
+  font-size: clamp(1.05rem, 1.65vw, 1.32rem);
+}
+.about-hero-grid {
+  gap: clamp(28px, 4vw, 54px);
+}
+.about-portrait {
+  aspect-ratio: 16 / 10;
+  max-height: 390px;
+}
+.about-portrait img {
+  object-position: center 40%;
+}
+
+/* Case-study heroes are also compressed so the case navigation / first section
+   begins to appear without sacrificing the project overview. */
+.case-hero {
+  padding: 42px 0 28px;
+}
+.case-title {
+  font-size: clamp(3.2rem, 7vw, 6.6rem);
+}
+.case-intro {
+  margin-top: 20px;
+  gap: 36px;
+}
+.case-cover {
+  margin-top: 28px;
+  height: clamp(250px, 34vh, 350px);
+}
+.case-cover img {
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center top;
+}
+.case-nav-inner {
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+/* Yoolmi: only the three images currently selected for showcase. */
+.phone-strip {
+  min-height: 390px;
+  padding: 24px;
+  gap: 12px;
+}
+.phone-strip img {
+  max-height: 350px;
+}
+.yoolmi-mini-card {
+  grid-template-columns: 1.08fr .92fr;
+}
+.yoolmi-mini-strip {
+  min-height: 360px;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #17213a, #102728);
+}
+.yoolmi-mini-strip img {
+  max-height: 310px;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 24px rgba(0,0,0,.24));
+}
+
+/* Selected 3D: show more work per viewport and avoid oversized cards. */
+.package-gallery {
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+}
+.package-gallery .gallery-card img {
+  height: 210px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  padding: 8px;
+  background: #0d1016;
+}
+.package-gallery .gallery-copy {
+  padding: 16px 18px 18px;
+}
+.package-gallery .gallery-copy h3 {
+  font-size: 1.12rem;
+}
+.package-gallery .gallery-copy p {
+  font-size: .82rem;
+}
+
+/* Still-life hero stays visually dominant, but no longer consumes most of a screen. */
+.still-life-gallery {
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+}
+.still-life-gallery .still-life-main {
+  grid-column: 1 / -1;
+}
+.still-life-gallery .still-life-main img {
+  height: 390px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+  background: #0d1016;
+}
+.still-life-gallery .gallery-card:not(.still-life-main) img {
+  height: 205px;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+.still-life-gallery .gallery-copy {
+  padding: 16px 18px 18px;
+}
+
+/* Rolex: three-column gallery dramatically reduces scroll length. */
+.rolex-gallery {
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+}
+.rolex-gallery .gallery-card img {
+  height: 245px;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+.rolex-gallery .gallery-copy {
+  padding: 16px 18px 18px;
+}
+.rolex-gallery .gallery-copy h3 {
+  font-size: 1.12rem;
+}
+.rolex-gallery .gallery-copy p {
+  font-size: .82rem;
+}
+.project-3d-section {
+  padding-top: 74px;
+  padding-bottom: 74px;
+}
+.project-3d-section .page-actions {
+  margin-top: 20px;
+}
+
+@media (max-width: 980px) {
+  .package-gallery,
+  .rolex-gallery,
+  .still-life-gallery {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+  .still-life-gallery .still-life-main {
+    grid-column: 1 / -1;
+  }
+  .yoolmi-mini-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding-top: 62px;
+    padding-bottom: 62px;
+  }
+  .story-section {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+  .page-hero {
+    min-height: auto;
+    padding: 34px 0 24px;
+  }
+  .page-hero h1 {
+    font-size: clamp(2.7rem, 14vw, 4.7rem);
+  }
+  .about-portrait {
+    max-height: 310px;
+    aspect-ratio: 16 / 10;
+  }
+  .case-hero {
+    padding-top: 32px;
+  }
+  .case-cover {
+    height: 245px;
+    margin-top: 22px;
+  }
+  .case-intro {
+    gap: 24px;
+  }
+  .phone-strip {
+    min-height: 0;
+    padding: 18px;
+  }
+  .phone-strip img {
+    max-height: 300px;
+  }
+  .yoolmi-mini-strip {
+    min-height: 0;
+    padding: 18px;
+  }
+  .yoolmi-mini-strip img {
+    max-height: 270px;
+  }
+  .package-gallery,
+  .rolex-gallery,
+  .still-life-gallery {
+    grid-template-columns: 1fr;
+  }
+  .still-life-gallery .still-life-main {
+    grid-column: auto;
+  }
+  .package-gallery .gallery-card img,
+  .rolex-gallery .gallery-card img {
+    height: 230px;
+  }
+  .still-life-gallery .still-life-main img {
+    height: 340px;
+  }
+  .still-life-gallery .gallery-card:not(.still-life-main) img {
+    height: 220px;
+  }
+}
