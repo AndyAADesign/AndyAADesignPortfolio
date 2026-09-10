@@ -1,4 +1,4 @@
-# Andrés Álvarez Portfolio — v1
+# Andrés Alvarez Portfolio — v1
 
 Static portfolio prepared for GitHub Pages. No build step or framework is required.
 
