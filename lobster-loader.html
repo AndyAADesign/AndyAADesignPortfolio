@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lobster Loader game UX case study by Andrés Álvarez.">
+  <title>Lobster Loader — Andrés Álvarez</title><link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container nav"><a class="brand" href="index.html">Andrés <span>Álvarez</span></a><button class="menu-btn" aria-expanded="false" aria-label="Open navigation">Menu</button><nav class="nav-links"><a href="index.html#work">Work</a><a href="index.html#current">Current Work</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a><a class="nav-cta" href="assets/docs/andres-alvarez-cv.pdf" target="_blank">CV ↗</a></nav></div></header>
+<main id="main">
+<section class="case-hero"><div class="container">
+  <div class="kicker reveal">Game UX · Game Design · Project Management</div>
+  <h1 class="case-title reveal" style="margin-top:18px">Lobster Loader</h1>
+  <div class="case-intro reveal">
+    <p class="lede">Designing a 3D combo puzzle that was easy to read, satisfying to manipulate and deep enough to reward players who wanted to optimize.</p>
+    <div class="case-meta">
+      <div class="meta-item"><span>Role</span><strong>Project Manager · Game Designer · UX/UI Designer · 3D Artist</strong></div>
+      <div class="meta-item"><span>Duration</span><strong>6 months · 2026</strong></div>
+      <div class="meta-item"><span>Production</span><strong>2 months pre-production + 4 months production</strong></div>
+      <div class="meta-item"><span>Milestones</span><strong>M1 · M2 · M3 · Alpha · Beta / Pitch & Play</strong></div>
+    </div>
+  </div>
+  <figure class="case-cover reveal"><img src="assets/images/lobster/beta-pitch-play.png" alt="Final Lobster Loader gameplay build"></figure>
+</div></section>
+<nav class="case-nav"><div class="container case-nav-inner"><a href="#strategy">Strategy</a><a href="#pillars">Pillars</a><a href="#readability">Readability</a><a href="#controls">Controls</a><a href="#feedback">Feedback</a><a href="#emergence">Emergence</a><a href="#testing">Testing</a><a href="#outcome">Outcome</a></div></nav>
+
+<section class="story-section" id="strategy"><div class="container story-grid">
+  <div class="story-side reveal"><div class="eyebrow">01 · Production strategy</div><h2>Choosing polish over scope</h2></div>
+  <div class="story-body reveal">
+    <p class="copy">During concept selection, I advocated for the simplest of our four ideas: a 3D package-stacking puzzle about a tiny loader filling whales. The reasoning was production-focused. A smaller core system would give the team more time for responsiveness, audiovisual feedback, presentation and iteration before VFS Pitch & Play.</p>
+    <div class="callout">The project goal from the beginning was not “make the biggest game.” It was “make a small game feel exceptionally finished.”</div>
+    <div class="timeline">
+      <div class="timeline-item"><strong>Pre-production</strong><span>Months 1–2 · concept, pillars, systems, prototypes</span></div>
+      <div class="timeline-item"><strong>M1</strong><span>Core placement and interaction</span></div>
+      <div class="timeline-item"><strong>M2 / M3</strong><span>Scoring, readability and iteration</span></div>
+      <div class="timeline-item"><strong>Alpha</strong><span>Polish, onboarding and accessibility</span></div>
+      <div class="timeline-item"><strong>Beta / PnP</strong><span>Showcase-ready build</span></div>
+    </div>
+    <div class="milestone-grid">
+      <figure><img src="assets/images/lobster/prototype.png" alt="Lobster Loader prototype"><figcaption>Prototype</figcaption></figure>
+      <figure><img src="assets/images/lobster/m1.png" alt="Lobster Loader milestone one"><figcaption>M1</figcaption></figure>
+      <figure><img src="assets/images/lobster/m2.png" alt="Lobster Loader milestone two"><figcaption>M2</figcaption></figure>
+      <figure><img src="assets/images/lobster/m3.png" alt="Lobster Loader milestone three"><figcaption>M3</figcaption></figure>
+      <figure><img src="assets/images/lobster/beta-pitch-play.png" alt="Lobster Loader Beta Pitch and Play"><figcaption>Beta / Pitch & Play</figcaption></figure>
+    </div>
+  </div>
+</div></section>
+
+<section class="story-section" id="pillars"><div class="container story-grid">
+  <div class="story-side reveal"><div class="eyebrow">02 · Design pillars</div><h2>Three rules for every decision</h2></div>
+  <div class="story-body reveal">
+    <h3>Forward Motion</h3><p class="copy">Progress should not be stopped or reset during a level. Mechanics should push the player more or less, rather than erase momentum.</p>
+    <h3>Small Number Gets Bigger</h3><p class="copy">Every package contributes to the quota. Good decisions should cause points to accelerate and make the player feel the number rapidly growing.</p>
+    <h3>Flexibility</h3><p class="copy">Players should have more than one viable choice. Constraints should be few, intuitive and leave room for personal strategy.</p>
+  </div>
+</div></section>
+
+<section class="story-section" id="readability"><div class="container story-grid">
+  <div class="story-side reveal"><div class="eyebrow">03 · Spatial readability</div><h2>Rotate the puzzle, not the camera</h2></div>
+  <div class="story-body reveal">
+    <p class="copy">The earliest composition placed the whale to one side of the screen. I pushed to center the whale and grid because that was where the player made every important spatial decision. Centering it improved hierarchy — but created a new 3D problem: foreground packages could hide usable space behind them.</p>
+    <p class="copy">We prototyped player-controlled camera rotation, but it did not feel right for the experience. The better solution was to keep the camera stable and let the whale’s tongue manipulate the grid itself. Players could rotate the grid and tip it toward the camera to inspect different angles without losing the central composition.</p>
+    <div class="callout">Occlusion was not just a visual problem. If the camera made a valid space impossible to inspect, the interface was effectively punishing the player.</div>
+    <figure class="figure"><img src="assets/images/lobster/final-grid-feedback.png" alt="Lobster Loader package influence and centered rotating grid"><figcaption>The centered grid remained the visual focus while the player could inspect it from different orientations.</figcaption></figure>
+    <p class="copy">Some older testers still felt the grid was too distant, so we also added an optional zoom mode. It helped as an accommodation, although adoption was limited; today I would explore a more integrated accessibility solution.</p>
+  </div>
+</div></section>
+
+<section class="story-section" id="controls"><div class="container story-grid">
+  <div class="story-side reveal"><div class="eyebrow">04 · Interaction design</div><h2>Reducing cognitive load</h2></div>
+  <div class="story-body reveal">
+    <p class="copy">Early builds exposed full 3-axis package rotation with six inputs. Testing showed that players rarely needed all of them — but still had to remember which key controlled which axis.</p>
+    <div class="two-up">
+      <figure class="figure"><img src="assets/images/lobster/early-controls.png" alt="Early Lobster Loader UI with extensive control instructions"><figcaption>Earlier builds placed a large control reference directly in the play space.</figcaption></figure>
+      <figure class="figure"><img src="assets/images/lobster/clean-gameplay.png" alt="Later Lobster Loader cleaner interface"><figcaption>Later builds reduced the persistent visual burden and relied on simpler controls plus contextual support.</figcaption></figure>
+    </div>
+    <p class="copy">We simplified rotation to four inputs: <strong>W/S</strong> for forward/backward rotation and <strong>A/D</strong> for clockwise/counter-clockwise rotation. Players could still reach the necessary orientations without thinking in terms of pitch, yaw and roll.</p>
+    <h3>Teaching was not the same as remembering</h3>
+    <p class="copy">The forced tutorial itself tested reasonably well. The problem appeared in later levels, when players forgot that grid rotation or package rotation existed. We added a persistent question-mark control reference and worked with programmers on contextual prompts that resurfaced an input when the player had not used an important action for a while.</p>
+    <div class="callout">The onboarding problem was not “Can the player follow the tutorial?” It was “Can the player recall the tool when the tutorial is gone?”</div>
+  </div>
+</div></section>
+
+<section class="story-section" id="feedback"><div class="container story-grid">
+  <div class="story-side reveal"><div class="eyebrow">05 · Game feel</div><h2>Making the score feel physical</h2></div>
+  <div class="story-body reveal">
+    <p class="copy">We wanted every meaningful placement to reinforce the player through multiple channels. Packages wiggle, particles fire, placement and scoring use distinct sounds, and generated point values appear directly above the source package before traveling toward the quota.</p>
+    <p class="copy">When a multiplier affects a package multiple times, the package visibly reacts multiple times and emits repeated score values. This made an abstract scoring relationship easier to read: <strong>package → reaction → points generated → points move to the total</strong>.</p>
+    <figure class="figure"><img src="assets/images/lobster/layer-complete.png" alt="Lobster Loader layer complete scoring feedback"><figcaption>Layer completion and chained scoring were deliberately loud, readable and satisfying.</figcaption></figure>
+    <p class="copy">“More feedback” and “more sound” were recurring requests in earlier playtests. We kept layering feedback through production until satisfaction with the feel of the game became one of the most consistent strengths in later testing.</p>
+  </div>
+</div></section>
+
+<section class="story-section" id="emergence"><div class="container story-grid">
+  <div class="story-side reveal"><div class="eyebrow">06 · Emergent behavior</div><h2>Players kept playing it “wrong”</h2></div>
+  <div class="story-body reveal">
+    <p class="copy">Our strategic reference was Balatro: we wanted players to chase combinations, multipliers and the satisfying “aha” moment of finding a high-value interaction. In testing, however, many players instinctively approached the game like Tetris and focused on filling the spatial grid cleanly.</p>
+    <p class="copy">At first we treated that as a problem because those players tended to score less. Then we changed the design question: instead of forcing the intended strategy, how could we reward the behavior players already found fun without flattening the deeper scoring system?</p>
+    <div class="callout">The solution was a Layer Completion Bonus: fill a complete layer and receive the base value of every package in that layer again.</div>
+    <p class="copy">That gave spatial players a meaningful reward while letting optimization-focused players incorporate the same layer bonus into more advanced multiplier strategies. One mechanic supported both playstyles and reinforced all three design pillars.</p>
+  </div>
+</div></section>
+
+<section class="story-section" id="testing"><div class="container story-grid">
+  <div class="story-side reveal"><div class="eyebrow">07 · Evidence</div><h2>Five milestones, 103 responses</h2></div>
+  <div class="story-body reveal">
+    <p class="copy">We combined daily internal testing, two consistent external testers who followed builds over time, fresh-eyes sessions roughly every two weeks and formal milestone forms across M1, M2, M3, Alpha and Beta/Pitch & Play.</p>
+    <div class="metric-row">
+      <div class="metric"><strong>103</strong><span>submitted playtest responses across five milestone forms</span></div>
+      <div class="metric"><strong>17/17</strong><span>Beta respondents said the game felt satisfying to play</span></div>
+      <div class="metric"><strong>9.1/10</strong><span>average Beta likelihood to recommend to a puzzle-game player</span></div>
+    </div>
+    <p class="copy">The forms also show the direction of the design problem. Early testers strongly defaulted to filling the space; later Beta responses were more likely to cite raising the score as their instinctive goal. Because the tester pools and questions changed, I treat this as directional evidence rather than a controlled experiment.</p>
+    <blockquote class="quote">“The scoring feedback feels satisfying.”<small>Beta playtest response</small></blockquote>
+    <blockquote class="quote">“SCORE GO BIG.”<small>Beta playtest response — a useful summary of one of the project’s core experience goals.</small></blockquote>
+  </div>
+</div></section>
+
+<section class="story-section" id="outcome"><div class="container story-grid">
+  <div class="story-side reveal"><div class="eyebrow">08 · Outcome</div><h2>Polish became the result</h2></div>
+  <div class="story-body reveal">
+    <p class="copy">Pitch & Play went extremely well. Visitors consistently praised the game’s feel, visual quality, immersion and level of polish, and people generally understood the concept quickly. The showcase build included three levels — tutorial, baseline and higher-difficulty shifts — with three more added shortly afterward.</p>
+    <p class="copy">The part I’m proudest of is that the final reception matched the production decision we made at the beginning: protect scope so the team has time to polish. Six months is not long for a game production, but we stayed focused enough to make the core interaction feel complete.</p>
+    <figure class="figure"><img src="assets/images/lobster/environment.png" alt="Lobster Loader polished underwater warehouse environment"><figcaption>The final presentation combined a readable play space with a polished, immersive underwater warehouse.</figcaption></figure>
+    <h3>What I would improve with one more month</h3>
+    <p class="copy">I would make onboarding more subtle and integrated, revisit the quota/HUD composition, expand package modifiers and constraints, and build more levels around intentional grid variations instead of mainly increasing numerical difficulty. The underlying grid system was flexible enough to support much more design depth.</p>
+    <h3>Production support beyond UX</h3>
+    <p class="copy">Alongside PM, game design and UX/UI responsibilities, I modeled and UV-unwrapped a set of package props when the project needed additional 3D production support.</p>
+    <figure class="figure"><img src="assets/images/3d/package-lineup.jpg" alt="Lobster Loader package modeling set"><figcaption>My contribution: 3D modeling + UVs · Concept art: Athena Wang · Textures: Leo Daynard.</figcaption></figure>
+  </div>
+</div></section>
+
+<div class="container next-project reveal"><div><div class="kicker">Back to featured work</div><h2 style="margin-top:12px">Xapontic</h2></div><a class="button primary" href="xapontic.html">Read case study →</a></div>
+</main>
+<footer class="footer"><div class="container footer-row"><a href="index.html">← Back home</a><span>© 2026 Andrés Álvarez</span></div></footer>
+<script src="assets/js/site.js"></script></body></html>
