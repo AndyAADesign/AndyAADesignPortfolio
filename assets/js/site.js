@@ -20,50 +20,6 @@ if (menu && nav) {
   }));
 }
 
-function applyLanguage(lang) {
-  const safeLang = lang === 'es' ? 'es' : 'en';
-  document.documentElement.lang = safeLang;
-  localStorage.setItem('portfolio-language', safeLang);
-
-  document.querySelectorAll('[data-en][data-es]').forEach(el => {
-    el.textContent = el.dataset[safeLang];
-  });
-
-  document.querySelectorAll('[data-en-html][data-es-html]').forEach(el => {
-    el.innerHTML = safeLang === 'es' ? el.dataset.esHtml : el.dataset.enHtml;
-  });
-
-  document.querySelectorAll('[data-alt-en][data-alt-es]').forEach(el => {
-    el.alt = safeLang === 'es' ? el.dataset.altEs : el.dataset.altEn;
-  });
-
-  document.querySelectorAll('.lang-button').forEach(btn => {
-    const active = btn.dataset.lang === safeLang;
-    btn.classList.toggle('active', active);
-    btn.setAttribute('aria-pressed', String(active));
-  });
-
-  const body = document.body;
-  if (body) {
-    const title = safeLang === 'es' ? body.dataset.titleEs : body.dataset.titleEn;
-    if (title) document.title = title;
-  }
-
-  const meta = document.querySelector('meta[name="description"]');
-  if (meta) {
-    const value = safeLang === 'es' ? meta.dataset.es : meta.dataset.en;
-    if (value) meta.setAttribute('content', value);
-  }
-}
-
-const stored = localStorage.getItem('portfolio-language');
-const initialLanguage = stored || (navigator.language && navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en');
-applyLanguage(initialLanguage);
-
-document.querySelectorAll('.lang-button').forEach(btn => {
-  btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
-});
-
 if ('IntersectionObserver' in window) {
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -77,3 +33,179 @@ if ('IntersectionObserver' in window) {
 } else {
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
 }
+
+// Image lightbox. Images inside project-navigation cards keep their normal link behavior.
+const lightboxImages = [...document.querySelectorAll('main img:not(.no-lightbox)')]
+  .filter(img => !img.closest('a.project-card'));
+
+if (lightboxImages.length) {
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox';
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Image viewer');
+  lightbox.innerHTML = `
+    <div class="lightbox-top">
+      <span class="lightbox-count"></span>
+      <button class="lightbox-close" type="button" aria-label="Close image viewer">×</button>
+    </div>
+    <div class="lightbox-stage">
+      <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Previous image">←</button>
+      <div class="lightbox-media"><img alt=""></div>
+      <button class="lightbox-arrow lightbox-next" type="button" aria-label="Next image">→</button>
+    </div>
+    <div class="lightbox-bottom">
+      <span class="lightbox-caption"></span>
+      <a class="lightbox-original" target="_blank" rel="noopener">Open original ↗</a>
+    </div>`;
+  document.body.appendChild(lightbox);
+
+  const viewer = lightbox.querySelector('.lightbox-media img');
+  const count = lightbox.querySelector('.lightbox-count');
+  const caption = lightbox.querySelector('.lightbox-caption');
+  const original = lightbox.querySelector('.lightbox-original');
+  const prev = lightbox.querySelector('.lightbox-prev');
+  const next = lightbox.querySelector('.lightbox-next');
+  const close = lightbox.querySelector('.lightbox-close');
+
+  let group = [];
+  let index = 0;
+  let lastFocus = null;
+
+  function galleryRoot(img) {
+    // Case-study sections are treated as one sequence so related design iterations
+    // (commerce flow, testing, responsive comparisons, etc.) can be browsed together.
+    const story = img.closest('.story-section');
+    if (story) return story;
+    return img.closest('.gallery-grid, .art-grid, .phone-strip, .milestone-grid, .two-up, .three-up, .phone-pair, .current-card') || img.parentElement;
+  }
+
+  function buildGroup(img) {
+    const root = galleryRoot(img);
+    const candidates = [...root.querySelectorAll('img:not(.no-lightbox)')]
+      .filter(candidate => !candidate.closest('a.project-card'));
+    return candidates.length ? candidates : [img];
+  }
+
+  function render() {
+    const img = group[index];
+    if (!img) return;
+    viewer.src = img.currentSrc || img.src;
+    viewer.alt = img.alt || '';
+    original.href = img.currentSrc || img.src;
+    const figcaption = img.closest('figure')?.querySelector('figcaption');
+    caption.textContent = figcaption?.textContent?.trim() || img.alt || '';
+    count.textContent = group.length > 1 ? `${index + 1} / ${group.length}` : 'Image';
+    prev.hidden = group.length < 2;
+    next.hidden = group.length < 2;
+  }
+
+  function openLightbox(img) {
+    lastFocus = document.activeElement;
+    group = buildGroup(img);
+    index = Math.max(0, group.indexOf(img));
+    render();
+    lightbox.classList.add('is-open');
+    document.body.classList.add('lightbox-open');
+    close.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    document.body.classList.remove('lightbox-open');
+    viewer.removeAttribute('src');
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  function step(direction) {
+    if (group.length < 2) return;
+    index = (index + direction + group.length) % group.length;
+    render();
+  }
+
+  lightboxImages.forEach(img => {
+    img.tabIndex = 0;
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', `${img.alt || 'Image'} — open larger`);
+    img.addEventListener('click', event => {
+      event.preventDefault();
+      openLightbox(img);
+    });
+    img.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(img);
+      }
+    });
+  });
+
+  prev.addEventListener('click', () => step(-1));
+  next.addEventListener('click', () => step(1));
+  close.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', event => {
+    if (event.target === lightbox || event.target.classList.contains('lightbox-media')) closeLightbox();
+  });
+  document.addEventListener('keydown', event => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'ArrowLeft') step(-1);
+    if (event.key === 'ArrowRight') step(1);
+  });
+}
+
+// Positive playtest response carousel.
+document.querySelectorAll('.quote-carousel').forEach(carousel => {
+  const items = [...carousel.querySelectorAll('.quote-item')];
+  const prev = carousel.querySelector('.quote-prev');
+  const next = carousel.querySelector('.quote-next');
+  const progress = carousel.querySelector('.quote-progress');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let index = 0;
+  let timer = null;
+  let progressTimer = null;
+  const interval = 5500;
+  let startedAt = 0;
+
+  function show(newIndex) {
+    if (!items.length) return;
+    index = (newIndex + items.length) % items.length;
+    items.forEach((item, i) => item.classList.toggle('is-active', i === index));
+    if (progress) progress.style.setProperty('--quote-progress', '0%');
+  }
+
+  function animateProgress() {
+    if (!progress || reducedMotion) return;
+    const elapsed = Date.now() - startedAt;
+    const pct = Math.min(100, elapsed / interval * 100);
+    progress.style.setProperty('--quote-progress', `${pct}%`);
+    if (pct < 100) progressTimer = requestAnimationFrame(animateProgress);
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+    if (progressTimer) cancelAnimationFrame(progressTimer);
+    progressTimer = null;
+  }
+
+  function start() {
+    stop();
+    if (reducedMotion || items.length < 2) return;
+    startedAt = Date.now();
+    animateProgress();
+    timer = setInterval(() => {
+      show(index + 1);
+      startedAt = Date.now();
+      animateProgress();
+    }, interval);
+  }
+
+  prev?.addEventListener('click', () => { show(index - 1); start(); });
+  next?.addEventListener('click', () => { show(index + 1); start(); });
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', start);
+  show(0);
+  start();
+});
