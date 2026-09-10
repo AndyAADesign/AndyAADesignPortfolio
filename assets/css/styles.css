@@ -470,3 +470,220 @@ body.lightbox-open { overflow: hidden; }
   .gallery-card:hover, .art-card:hover { transform: none; }
   .quote-item { transition: none; }
 }
+
+
+/* v4: About portrait + thumbnail framing + image loading polish */
+.project-media img.xapontic-preview {
+  object-position: center top;
+}
+
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+  gap: clamp(34px, 6vw, 82px);
+  align-items: center;
+}
+
+.about-portrait {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  aspect-ratio: 4 / 5;
+  position: relative;
+}
+
+.about-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.035);
+}
+
+.about-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% center;
+}
+
+@media (max-width: 900px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-portrait {
+    aspect-ratio: 16 / 10;
+    max-height: 620px;
+  }
+  .about-portrait img {
+    object-position: center 38%;
+  }
+}
+
+
+/* v5: expanded 3D portfolio */
+.art-grid.art-grid-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.art-grid.art-grid-three .art-card img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.art-grid.art-grid-three .art-card:nth-child(2) img {
+  object-position: center 42%;
+}
+.project-3d-section + .project-3d-section {
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.gallery-card-wide {
+  grid-column: 1 / -1;
+}
+.gallery-card-wide img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center 55%;
+}
+@media (max-width: 980px) {
+  .art-grid.art-grid-three { grid-template-columns: 1fr 1fr; }
+  .art-grid.art-grid-three .art-card:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .art-grid.art-grid-three { grid-template-columns: 1fr; }
+  .art-grid.art-grid-three .art-card:last-child { grid-column: auto; }
+  .gallery-card-wide { grid-column: auto; }
+}
+
+
+/* v6: compact landing hero + compact homepage 3D preview */
+
+/* Keep enough personality in the hero while revealing Featured Work
+   in the first viewport on typical laptop/desktop screens. */
+.hero {
+  min-height: 62vh;
+  padding: 50px 0 28px;
+}
+.hero h1 {
+  font-size: clamp(3.25rem, 7vw, 6.45rem);
+  max-width: 12ch;
+}
+.hero-topline {
+  margin-bottom: 18px;
+}
+.hero-bottom {
+  margin-top: 24px;
+}
+.hero-bottom .lede {
+  font-size: clamp(1.05rem, 1.55vw, 1.3rem);
+  max-width: 660px;
+}
+
+/* Homepage-only 3D cards are previews, not image galleries. */
+.home-3d-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.home-3d-card {
+  display: block;
+  min-width: 0;
+  cursor: pointer;
+}
+.home-3d-grid .art-card img {
+  width: 100%;
+  height: 205px;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+.home-3d-grid .art-card:nth-child(1) img {
+  object-position: center 48%;
+}
+.home-3d-grid .art-card:nth-child(2) img {
+  object-position: center 38%;
+}
+.home-3d-grid .art-card:nth-child(3) img {
+  object-position: center 36%;
+}
+.home-3d-grid .art-copy {
+  padding: 18px 18px 20px;
+}
+.home-3d-grid .art-copy h3 {
+  font-size: 1.18rem;
+  line-height: 1.05;
+}
+.home-3d-grid .art-copy p {
+  font-size: .84rem;
+  line-height: 1.45;
+}
+.home-3d-grid .credit {
+  font-size: .72rem !important;
+}
+.home-3d-card::after {
+  content: "Explore 3D ↗";
+}
+.home-3d-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Keep the 3D preview section closer in overall height to Current Work. */
+#3d.section {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+#3d .section-head {
+  margin-bottom: 28px;
+}
+#3d .page-actions {
+  margin-top: 22px;
+}
+
+@media (max-width: 980px) {
+  .home-3d-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .home-3d-grid .art-card:last-child {
+    grid-column: auto;
+  }
+  .home-3d-grid .art-card img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    min-height: auto;
+    padding-top: 54px;
+    padding-bottom: 30px;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 15vw, 4.8rem);
+  }
+  .hero-bottom .lede {
+    font-size: 1.05rem;
+  }
+
+  /* On phones, keep the 3D section compact by making the cards swipe horizontally
+     instead of stacking three tall cards. */
+  .home-3d-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(82vw, 330px);
+    grid-template-columns: none;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+  }
+  .home-3d-card {
+    scroll-snap-align: start;
+  }
+  .home-3d-grid .art-card img {
+    height: 190px;
+  }
+  #3d.section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+}
