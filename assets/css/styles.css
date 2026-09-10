@@ -687,3 +687,107 @@ body.lightbox-open { overflow: hidden; }
     padding-bottom: 72px;
   }
 }
+
+
+/* v7: clearer UX/UI + Interactive Design positioning */
+.hero-identity {
+  display: grid;
+  gap: 13px;
+  margin-bottom: 22px;
+}
+
+.hero-role {
+  width: fit-content;
+  color: var(--text);
+  font-size: clamp(1rem, 1.6vw, 1.28rem);
+  font-weight: 850;
+  letter-spacing: -.02em;
+  padding-left: 14px;
+  position: relative;
+}
+
+.hero-role::before {
+  content: "";
+  position: absolute;
+  inset: 3px auto 3px 0;
+  width: 4px;
+  border-radius: 99px;
+  background: var(--red);
+}
+
+.hero-capabilities {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hero-capabilities .pill {
+  padding: 6px 10px;
+  font-size: .75rem;
+  color: #c7ccd5;
+  background: rgba(255,255,255,.025);
+}
+
+.hero {
+  min-height: 58vh;
+}
+
+.hero h1 {
+  font-size: clamp(3.15rem, 6.6vw, 5.95rem);
+}
+
+.hero-bottom {
+  margin-top: 20px;
+}
+
+.hero-bottom .lede {
+  max-width: 760px;
+  font-size: clamp(1rem, 1.42vw, 1.2rem);
+}
+
+/* Current work and 3D are intentionally supporting, not equal to featured case studies. */
+.supporting-section {
+  padding-top: 82px;
+  padding-bottom: 82px;
+}
+
+.supporting-section .section-head h2 {
+  font-size: clamp(2.1rem, 4.1vw, 3.75rem);
+}
+
+.supporting-section .section-head p {
+  font-size: .94rem;
+}
+
+#current .current-card {
+  box-shadow: none;
+}
+
+#current .current-copy {
+  padding: 34px;
+}
+
+/* Let the UX case studies carry the strongest red interaction treatment. */
+#featured .project-card:hover {
+  border-color: rgba(255,59,77,.58);
+  box-shadow: 0 28px 80px rgba(0,0,0,.34), 0 0 0 1px rgba(255,59,77,.07);
+}
+
+@media (max-width: 720px) {
+  .hero {
+    min-height: auto;
+  }
+  .hero-role {
+    font-size: 1rem;
+  }
+  .hero-capabilities {
+    gap: 6px;
+  }
+  .hero-capabilities .pill {
+    font-size: .7rem;
+  }
+  .supporting-section {
+    padding-top: 66px;
+    padding-bottom: 66px;
+  }
+}
