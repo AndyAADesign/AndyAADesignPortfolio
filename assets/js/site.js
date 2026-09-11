@@ -1,3 +1,22 @@
+const siteIsSpanish = document.documentElement.lang.toLowerCase().startsWith('es');
+const siteUi = siteIsSpanish ? {
+  imageViewer: 'Visor de imágenes',
+  closeImageViewer: 'Cerrar visor de imágenes',
+  previousImage: 'Imagen anterior',
+  nextImage: 'Siguiente imagen',
+  openOriginal: 'Abrir original ↗',
+  image: 'Imagen',
+  openLarger: 'abrir en grande'
+} : {
+  imageViewer: 'Image viewer',
+  closeImageViewer: 'Close image viewer',
+  previousImage: 'Previous image',
+  nextImage: 'Next image',
+  openOriginal: 'Open original ↗',
+  image: 'Image',
+  openLarger: 'open larger'
+};
+
 const header = document.querySelector('.site-header');
 const menu = document.querySelector('.menu-btn');
 const nav = document.querySelector('.nav-links');
@@ -18,6 +37,24 @@ if (menu && nav) {
     nav.classList.remove('open');
     menu.setAttribute('aria-expanded', 'false');
   }));
+}
+
+
+if (menu && nav) {
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      menu.setAttribute('aria-expanded', 'false');
+      menu.focus();
+    }
+  });
+  document.addEventListener('click', event => {
+    if (!nav.classList.contains('open')) return;
+    if (!nav.contains(event.target) && !menu.contains(event.target)) {
+      nav.classList.remove('open');
+      menu.setAttribute('aria-expanded', 'false');
+    }
+  });
 }
 
 if ('IntersectionObserver' in window) {
@@ -43,20 +80,20 @@ if (lightboxImages.length) {
   lightbox.className = 'lightbox';
   lightbox.setAttribute('role', 'dialog');
   lightbox.setAttribute('aria-modal', 'true');
-  lightbox.setAttribute('aria-label', 'Image viewer');
+  lightbox.setAttribute('aria-label', siteUi.imageViewer);
   lightbox.innerHTML = `
     <div class="lightbox-top">
       <span class="lightbox-count"></span>
-      <button class="lightbox-close" type="button" aria-label="Close image viewer">×</button>
+      <button class="lightbox-close" type="button" aria-label="${siteUi.closeImageViewer}">×</button>
     </div>
     <div class="lightbox-stage">
-      <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Previous image">←</button>
+      <button class="lightbox-arrow lightbox-prev" type="button" aria-label="${siteUi.previousImage}">←</button>
       <div class="lightbox-media"><img alt=""></div>
-      <button class="lightbox-arrow lightbox-next" type="button" aria-label="Next image">→</button>
+      <button class="lightbox-arrow lightbox-next" type="button" aria-label="${siteUi.nextImage}">→</button>
     </div>
     <div class="lightbox-bottom">
       <span class="lightbox-caption"></span>
-      <a class="lightbox-original" target="_blank" rel="noopener">Open original ↗</a>
+      <a class="lightbox-original" target="_blank" rel="noopener">${siteUi.openOriginal}</a>
     </div>`;
   document.body.appendChild(lightbox);
 
@@ -95,7 +132,7 @@ if (lightboxImages.length) {
     original.href = img.currentSrc || img.src;
     const figcaption = img.closest('figure')?.querySelector('figcaption');
     caption.textContent = figcaption?.textContent?.trim() || img.alt || '';
-    count.textContent = group.length > 1 ? `${index + 1} / ${group.length}` : 'Image';
+    count.textContent = group.length > 1 ? `${index + 1} / ${group.length}` : siteUi.image;
     prev.hidden = group.length < 2;
     next.hidden = group.length < 2;
   }
@@ -126,7 +163,7 @@ if (lightboxImages.length) {
   lightboxImages.forEach(img => {
     img.tabIndex = 0;
     img.setAttribute('role', 'button');
-    img.setAttribute('aria-label', `${img.alt || 'Image'} — open larger`);
+    img.setAttribute('aria-label', `${img.alt || siteUi.image} — ${siteUi.openLarger}`);
     img.addEventListener('click', event => {
       event.preventDefault();
       openLightbox(img);
@@ -147,9 +184,27 @@ if (lightboxImages.length) {
   });
   document.addEventListener('keydown', event => {
     if (!lightbox.classList.contains('is-open')) return;
-    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeLightbox();
+      return;
+    }
     if (event.key === 'ArrowLeft') step(-1);
     if (event.key === 'ArrowRight') step(1);
+    if (event.key === 'Tab') {
+      const focusable = [...lightbox.querySelectorAll('button:not([hidden]), a[href]:not([hidden])')]
+        .filter(el => el.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
   });
 }
 
@@ -254,4 +309,7 @@ if (filterToolbar) {
 
   const initialFilter = location.hash ? location.hash.slice(1) : 'all';
   applyProjectFilter(initialFilter, false);
+  window.addEventListener('hashchange', () => {
+    applyProjectFilter(location.hash ? location.hash.slice(1) : 'all', false);
+  });
 }

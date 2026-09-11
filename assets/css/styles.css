@@ -1682,3 +1682,984 @@ body.lightbox-open { overflow: hidden; }
     margin-top: 52px;
   }
 }
+
+
+/* v13: evidence-first case studies + portfolio quality pass */
+:root {
+  color-scheme: dark;
+}
+
+/* Strong keyboard focus across interactive elements. */
+:where(a, button, [role="button"]):focus-visible {
+  outline: 3px solid rgba(255,90,100,.92);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+.filter-button:focus-visible,
+.nav-button:focus-visible,
+.nav-cta:focus-visible,
+.button:focus-visible {
+  border-radius: 999px;
+}
+
+/* Proof on featured cards: concrete evidence before opening the case study. */
+.card-proof {
+  margin-top: 16px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  color: var(--red-bright);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+}
+
+/* Case-study hero proof */
+.case-proof-row {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.case-proof-row span {
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.025);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--muted);
+  font-size: .78rem;
+}
+.case-proof-row strong {
+  color: var(--text);
+}
+
+/* Problem → evidence → decision → result scanning blocks */
+.decision-trail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  margin: 24px 0 28px;
+}
+.decision-trail > div,
+.reflection-grid > div {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.025);
+  padding: 18px;
+}
+.decision-trail span,
+.reflection-grid span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--red-bright);
+  font-size: .68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.decision-trail strong,
+.reflection-grid strong {
+  display: block;
+  font-size: .92rem;
+  line-height: 1.48;
+}
+
+/* Compact design pillars */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+}
+.pillar-card {
+  min-height: 220px;
+  padding: 22px;
+  border-radius: 20px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+.pillar-card > span {
+  color: var(--red);
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+.pillar-card h3 {
+  margin-top: 26px;
+  font-size: 1.25rem;
+}
+.pillar-card p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+/* Shorter Lobster case study without turning it into a dense wall. */
+#pillars.story-section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+#controls .two-up {
+  margin-bottom: 18px;
+}
+.reflection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 26px 0 30px;
+}
+
+/* About proof */
+.about-proof-strip {
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,.018);
+  padding: 22px 0;
+}
+.proof-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+}
+.proof-facts-wide {
+  grid-template-columns: repeat(4, minmax(0,1fr));
+}
+.proof-fact {
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.proof-fact strong {
+  display: block;
+  color: var(--text);
+  font-size: clamp(1.35rem, 2.5vw, 2.1rem);
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+.proof-fact span {
+  display: block;
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: .78rem;
+}
+
+/* Contact: email is the highest-priority conversion action. */
+.contact-actions .button {
+  white-space: nowrap;
+}
+
+/* Monster Route sits in the project library without pretending to be a finished case study. */
+.monster-route-card {
+  display: grid;
+  grid-template-columns: .82fr 1.18fr;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  min-height: 340px;
+}
+.monster-route-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,59,77,.56);
+  box-shadow: var(--shadow);
+}
+.monster-route-visual {
+  position: relative;
+  padding: 28px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background:
+    linear-gradient(145deg, rgba(255,59,77,.12), transparent 45%),
+    repeating-linear-gradient(135deg, transparent 0 26px, rgba(255,255,255,.025) 26px 27px),
+    #0d1118;
+  border-right: 1px solid var(--line);
+}
+.monster-route-visual strong {
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: .8;
+  letter-spacing: -.07em;
+}
+.monster-route-kicker {
+  color: var(--red-bright);
+  font-size: .63rem;
+  font-weight: 900;
+  letter-spacing: .13em;
+}
+.monster-route-mark {
+  color: var(--red);
+  font-size: 1.5rem;
+  align-self: flex-end;
+}
+.monster-route-copy {
+  padding: 26px;
+}
+.monster-route-copy h2 {
+  margin-top: 18px;
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+}
+.monster-route-copy p {
+  color: var(--muted);
+  margin-top: 12px;
+  font-size: .91rem;
+  line-height: 1.55;
+}
+.candidate-note {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: #d5dae3;
+  font-size: .78rem;
+}
+
+/* Slightly tighter case-study content rhythm */
+.story-section {
+  padding-top: 74px;
+  padding-bottom: 74px;
+}
+.story-body > .copy + .copy {
+  margin-top: 14px;
+}
+
+/* Responsive / mobile audit */
+@media (max-width: 980px) {
+  .proof-facts-wide {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+  .decision-trail,
+  .pillar-grid {
+    grid-template-columns: 1fr;
+  }
+  .pillar-card {
+    min-height: 0;
+  }
+  .reflection-grid {
+    grid-template-columns: 1fr;
+  }
+  .monster-route-card {
+    grid-template-columns: 1fr;
+  }
+  .monster-route-visual {
+    min-height: 220px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 720px) {
+  .story-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  .case-proof-row {
+    gap: 6px;
+    margin-top: 18px;
+  }
+  .case-proof-row span {
+    font-size: .7rem;
+    padding: 7px 10px;
+  }
+  .decision-trail {
+    margin-top: 18px;
+    margin-bottom: 22px;
+  }
+  .decision-trail > div,
+  .reflection-grid > div {
+    padding: 16px;
+  }
+  .proof-facts,
+  .proof-facts-wide {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+  .project-filter-shell {
+    top: 72px;
+  }
+  .case-nav {
+    top: 72px;
+  }
+  .case-nav-inner {
+    gap: 16px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .contact-actions {
+    gap: 9px;
+  }
+  .contact-actions .button {
+    padding: 11px 14px;
+  }
+}
+
+@media (max-width: 460px) {
+  .proof-facts,
+  .proof-facts-wide {
+    grid-template-columns: 1fr 1fr;
+  }
+  .proof-fact strong {
+    font-size: 1.28rem;
+  }
+  .proof-fact span {
+    font-size: .7rem;
+  }
+}
+
+
+/* v14: predictable project navigation
+   Linear sequence: Work → Xapontic → Lobster Loader → 3D → Work */
+
+.project-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: .76rem;
+  font-weight: 700;
+}
+
+.project-breadcrumb a {
+  color: #d8dce4;
+  text-decoration: none;
+  transition: color .18s ease;
+}
+
+.project-breadcrumb a:hover {
+  color: var(--red-bright);
+}
+
+.project-breadcrumb span[aria-current="page"] {
+  color: var(--muted);
+}
+
+.project-sequence-nav {
+  margin-top: 28px;
+  margin-bottom: 82px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: 14px;
+}
+
+.project-sequence-nav a {
+  min-height: 116px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 22px;
+  background: rgba(255,255,255,.022);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
+}
+
+.project-sequence-nav a:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,59,77,.5);
+  background: rgba(255,59,77,.035);
+}
+
+.project-sequence-nav .sequence-next {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.project-sequence-nav .sequence-label {
+  color: var(--red-bright);
+  font-size: .7rem;
+  font-weight: 850;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.project-sequence-nav strong {
+  color: var(--text);
+  font-size: clamp(1.15rem, 2.2vw, 1.65rem);
+  line-height: 1.15;
+  max-width: 23ch;
+}
+
+.sequence-finish {
+  border-color: rgba(255,59,77,.2) !important;
+}
+
+@media (max-width: 720px) {
+  .project-breadcrumb {
+    margin-bottom: 14px;
+  }
+
+  .project-sequence-nav {
+    grid-template-columns: 1fr;
+    margin-bottom: 60px;
+  }
+
+  .project-sequence-nav a {
+    min-height: 98px;
+    padding: 18px;
+  }
+
+  .project-sequence-nav .sequence-next {
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+
+
+/* v15: bilingual language switch */
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px;
+  background: rgba(255,255,255,.025);
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 850;
+  letter-spacing: .05em;
+}
+
+.language-switch > span {
+  opacity: .34;
+  user-select: none;
+}
+
+.lang-option {
+  min-width: 31px;
+  padding: 6px 8px;
+  border-radius: 999px;
+  text-align: center;
+  text-decoration: none;
+  color: #aeb5c0;
+  transition: background .18s ease, color .18s ease, transform .18s ease;
+}
+
+.lang-option:hover {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.lang-option.is-active {
+  color: #0b0d11;
+  background: var(--red);
+}
+
+@media (max-width: 720px) {
+  .language-switch {
+    margin-left: auto;
+  }
+  .lang-option {
+    min-width: 29px;
+    padding: 5px 7px;
+  }
+}
+
+
+/* v17: logo pass, warmer palette, mobile cleanup, still-life focus */
+:root {
+  --accent: #e03826;
+  --accent-2: #901818;
+  --red: #d83020;
+  --red-bright: #e23c2a;
+  --warm: #ff8a52;
+  --line-strong: rgba(216,48,32,.34);
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% -10%, rgba(216,48,32,.18), transparent 24rem),
+    radial-gradient(circle at 82% 10%, rgba(144,24,24,.12), transparent 28rem),
+    var(--bg);
+}
+
+.site-header.scrolled {
+  background: rgba(9,11,15,.88);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+}
+
+.brand-logo {
+  width: 42px !important;
+  height: 42px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,.28));
+  flex: 0 0 42px;
+}
+
+.brand-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-weight: 900;
+  letter-spacing: -.04em;
+}
+
+.brand-wordmark strong {
+  color: var(--warm);
+  font-weight: 900;
+}
+
+.hero-role::before,
+.status-dot,
+.external-card-icon,
+.lang-option.is-active,
+.button.primary,
+.nav-links a.nav-cta {
+  background: linear-gradient(135deg, var(--red-bright), var(--red));
+}
+
+.nav-links a.nav-cta,
+.button.primary,
+.external-card-icon {
+  border-color: var(--red);
+}
+
+.nav-links a.nav-button:hover,
+.nav-links a.nav-button.is-current {
+  border-color: rgba(216,48,32,.72);
+  background: linear-gradient(180deg, rgba(216,48,32,.16), rgba(216,48,32,.08));
+}
+
+.pill,
+.tag,
+.language-switch,
+.case-proof-row span,
+.decision-trail > div,
+.reflection-grid > div,
+.metric,
+.project-sequence-nav a,
+.contact-panel {
+  border-color: rgba(216,48,32,.18);
+}
+
+.contact-panel {
+  background: linear-gradient(135deg, rgba(216,48,32,.16), rgba(255,138,82,.06) 46%, rgba(255,255,255,.025));
+}
+
+.current-card,
+.project-card,
+.art-card,
+.gallery-card,
+.monster-route-card,
+.external-project-card,
+.mini-card,
+.case-cover,
+.contact-panel,
+.project-sequence-nav a {
+  box-shadow: 0 20px 56px rgba(0,0,0,.24);
+}
+
+.featured-project-grid .project-card,
+.home-3d-grid .art-card,
+.work-filter-grid .project-card,
+.work-filter-grid .mini-card,
+.work-filter-grid .monster-route-card,
+.work-filter-grid .external-project-card {
+  height: 100%;
+}
+
+.home-3d-grid .art-card,
+.featured-project-grid .project-card,
+.mini-card,
+.external-project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-3d-grid .art-copy,
+.featured-project-grid .project-body,
+.mini-copy {
+  flex: 1;
+}
+
+.home-3d-grid .art-media {
+  height: clamp(184px, 18vw, 220px);
+}
+
+.home-3d-grid .art-card:nth-child(2) .art-media img {
+  object-position: center 61% !important;
+}
+
+.still-life-gallery .still-life-feature {
+  grid-template-columns: minmax(300px, .9fr) minmax(0, 1.1fr);
+}
+
+.still-life-gallery .still-life-feature .gallery-media {
+  height: 370px !important;
+}
+
+.still-life-gallery .still-life-feature .gallery-media img {
+  object-fit: cover !important;
+  object-position: center 64% !important;
+}
+
+/* Work page: stack sooner so the cards don't become a sideways-feeling layout on smaller screens. */
+@media (max-width: 1080px) {
+  .work-filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav-right {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .menu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid rgba(216,48,32,.34);
+    border-radius: 999px;
+    background: rgba(255,255,255,.04);
+    color: var(--text);
+    font-size: .88rem;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: 0 12px 24px rgba(0,0,0,.24);
+  }
+
+  .menu-btn::before {
+    content: "☰";
+    color: var(--warm);
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .menu-btn[aria-expanded="true"] {
+    background: rgba(216,48,32,.18);
+    border-color: rgba(216,48,32,.58);
+  }
+
+  .nav-links {
+    inset: 76px 14px auto 14px;
+    box-shadow: 0 22px 44px rgba(0,0,0,.28);
+    border-color: rgba(216,48,32,.18);
+  }
+
+  /* Stack instead of horizontal scrolling on the homepage. */
+  .home-3d-grid {
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: 1fr;
+    overflow: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
+    gap: 16px;
+  }
+
+  .home-3d-card {
+    scroll-snap-align: none;
+  }
+
+  .home-3d-grid .art-media {
+    height: 162px;
+  }
+
+  .home-3d-grid .art-copy {
+    padding: 16px 16px 18px;
+  }
+
+  .home-3d-grid .art-copy h3 {
+    font-size: 1.28rem;
+  }
+
+  .home-3d-grid .art-copy p {
+    font-size: .88rem;
+  }
+
+  .still-life-gallery .still-life-feature .gallery-media {
+    height: 300px !important;
+  }
+
+  .still-life-gallery .still-life-feature .gallery-media img {
+    object-position: center 61% !important;
+  }
+
+  .project-card-topline {
+    gap: 12px;
+  }
+}
+
+
+/* v18: typography, spacing and alignment polish */
+:root {
+  --accent: #ee4a31;
+  --accent-2: #ff7549;
+  --red: #cf3025;
+  --red-bright: #ef4a31;
+  --red-deep: #971b1f;
+  --warm: #ff7549;
+  --radius: 24px;
+}
+
+body {
+  line-height: 1.58;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+.lede,
+.copy,
+.project-desc,
+.section-head > p,
+.art-copy p,
+.gallery-copy p,
+.mini-copy p,
+.monster-route-copy p,
+.external-project-card p {
+  text-wrap: pretty;
+}
+
+/* Keep the orange-red accents bright enough to read on the dark background. */
+.kicker,
+.accent-2,
+.inline-link,
+.card-proof,
+.case-proof-row strong,
+.decision-trail span,
+.reflection-grid span,
+.project-sequence-nav .sequence-label,
+.hero-arrow {
+  color: var(--accent-2);
+}
+
+.hero h1 span,
+.hero-role::before,
+.status-dot,
+.metric strong {
+  color: var(--red-bright);
+}
+
+.section,
+.supporting-section {
+  padding-top: clamp(64px, 7vw, 88px);
+  padding-bottom: clamp(64px, 7vw, 88px);
+}
+
+.section-head {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: end;
+  margin-bottom: 34px;
+}
+
+.section-head h2 {
+  max-width: 13ch;
+}
+
+.section-head > p {
+  max-width: 52ch;
+  line-height: 1.62;
+}
+
+.project-body,
+.mini-copy,
+.art-copy,
+.gallery-copy,
+.monster-route-copy {
+  line-height: 1.55;
+}
+
+.project-desc,
+.art-copy p,
+.gallery-copy p,
+.mini-copy p,
+.monster-route-copy p,
+.external-project-card p {
+  color: #b8bfca;
+}
+
+/* Equal visual rhythm inside card rows. */
+.featured-project-grid,
+.home-3d-grid,
+.work-filter-grid,
+.gallery-grid {
+  align-items: stretch;
+}
+
+.featured-project-grid > *,
+.home-3d-grid > *,
+.work-filter-grid > *,
+.gallery-grid > * {
+  min-width: 0;
+}
+
+.work-filter-grid .project-card,
+.work-filter-grid .mini-card,
+.work-filter-grid .monster-route-card,
+.work-filter-grid .external-project-card {
+  height: 100%;
+}
+
+.work-filter-grid .project-body,
+.yoolmi-index-card .mini-copy {
+  flex: 1;
+}
+
+.yoolmi-index-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make the Yoolmi and 3D cards feel like part of the same system on the Work page. */
+.yoolmi-index-media,
+.work-filter-grid .project-card .project-media {
+  aspect-ratio: 16 / 10;
+}
+
+.yoolmi-index-media {
+  min-height: 0;
+  overflow: hidden;
+  padding: 18px;
+}
+
+.yoolmi-index-media img {
+  max-height: 82%;
+}
+
+/* Slightly more compact typography on supporting cards. */
+.home-3d-grid .art-copy h3,
+.gallery-copy h3 {
+  line-height: 1.06;
+}
+
+.home-3d-grid .art-copy p,
+.gallery-copy p {
+  line-height: 1.5;
+}
+
+/* Main still life: show more of the actual composition while keeping it compact. */
+.still-life-gallery .still-life-feature .gallery-media {
+  height: 356px !important;
+}
+
+.still-life-gallery .still-life-feature .gallery-media img {
+  object-fit: cover !important;
+  object-position: center 69% !important;
+}
+
+/* The header wordmark should not compete with navigation on small screens. */
+@media (max-width: 980px) {
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .section-head > p {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .section,
+  .supporting-section {
+    padding-top: 54px;
+    padding-bottom: 54px;
+  }
+
+  .section-head {
+    margin-bottom: 24px;
+  }
+
+  .section-head h2 {
+    max-width: 14ch;
+  }
+
+  .home-3d-grid .art-media {
+    height: 148px;
+  }
+
+  .home-3d-grid .art-copy {
+    padding: 15px 16px 17px;
+  }
+
+  .home-3d-grid .art-copy h3 {
+    font-size: 1.18rem;
+  }
+
+  .home-3d-grid .art-copy p {
+    font-size: .84rem;
+    line-height: 1.42;
+  }
+
+  .home-3d-grid .credit {
+    font-size: .69rem !important;
+  }
+
+  .still-life-gallery .still-life-feature .gallery-media {
+    height: 286px !important;
+  }
+
+  .still-life-gallery .still-life-feature .gallery-media img {
+    object-position: center 66% !important;
+  }
+
+  .project-body,
+  .mini-copy,
+  .monster-route-copy,
+  .external-project-card {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 390px) {
+  .brand-wordmark {
+    display: none;
+  }
+
+  .brand-logo {
+    width: 40px !important;
+    height: 40px !important;
+    flex-basis: 40px;
+  }
+}
+
+
+/* v19: Monster Route is a normal supporting game project, not a case-study placeholder. */
+.monster-route-project .project-media img {
+  object-fit: cover !important;
+  object-position: 5% 54% !important;
+}
+
+.monster-route-project {
+  border-color: rgba(255,59,77,.24);
+}
+
+.monster-route-project:hover {
+  border-color: rgba(255,59,77,.62);
+}
+
+.monster-route-project .card-proof {
+  color: var(--accent-2);
+}
+
+/* Center the itch.io callout inside the space it shares with Monster Route. */
+.work-filter-grid .external-project-card {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.work-filter-grid .external-project-card > div:not(.external-card-icon) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work-filter-grid .external-project-card .project-card-topline {
+  justify-content: center;
+  flex-wrap: wrap;
+}
