@@ -2630,7 +2630,7 @@ h1, h2, h3 {
 /* v19: Monster Route is a normal supporting game project, not a case-study placeholder. */
 .monster-route-project .project-media img {
   object-fit: cover !important;
-  object-position: 5% 54% !important;
+  object-position: 15% 54% !important;
 }
 
 .monster-route-project {
