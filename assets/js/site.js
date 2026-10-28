@@ -71,9 +71,9 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
 }
 
-// Image lightbox. Images inside project-navigation cards keep their normal link behavior.
+// Linked images keep their navigation behavior; galleries open in the image viewer.
 const lightboxImages = [...document.querySelectorAll('main img:not(.no-lightbox)')]
-  .filter(img => !img.closest('a.project-card'));
+  .filter(img => !img.closest('a'));
 
 if (lightboxImages.length) {
   const lightbox = document.createElement('div');
@@ -120,7 +120,7 @@ if (lightboxImages.length) {
   function buildGroup(img) {
     const root = galleryRoot(img);
     const candidates = [...root.querySelectorAll('img:not(.no-lightbox)')]
-      .filter(candidate => !candidate.closest('a.project-card'));
+      .filter(candidate => !candidate.closest('a'));
     return candidates.length ? candidates : [img];
   }
 
@@ -131,7 +131,7 @@ if (lightboxImages.length) {
     viewer.alt = img.alt || '';
     original.href = img.currentSrc || img.src;
     const figcaption = img.closest('figure')?.querySelector('figcaption');
-    caption.textContent = figcaption?.textContent?.trim() || img.alt || '';
+    caption.textContent = figcaption?.innerText?.replace(/\s+/g, ' ').trim() || img.alt || '';
     count.textContent = group.length > 1 ? `${index + 1} / ${group.length}` : siteUi.image;
     prev.hidden = group.length < 2;
     next.hidden = group.length < 2;
@@ -274,6 +274,8 @@ if (filterToolbar) {
   const emptyState = document.querySelector('#filter-empty');
 
   function normalizeFilter(value) {
+    const aliases = { 'game-ux': 'game-ui', games: 'game-ui', current: 'ux-ui' };
+    value = aliases[value] || value;
     return filterButtons.some(button => button.dataset.filter === value) ? value : 'all';
   }
 
@@ -296,6 +298,10 @@ if (filterToolbar) {
     });
 
     if (emptyState) emptyState.hidden = visibleCount !== 0;
+    const countLabel = document.querySelector('.project-count');
+    if (countLabel) countLabel.textContent = siteIsSpanish
+      ? `${visibleCount} ${visibleCount === 1 ? 'proyecto' : 'proyectos'}`
+      : `${visibleCount} ${visibleCount === 1 ? 'project' : 'projects'}`;
 
     if (updateHash) {
       const next = filter === 'all' ? `${location.pathname}${location.search}` : `#${filter}`;
@@ -312,4 +318,69 @@ if (filterToolbar) {
   window.addEventListener('hashchange', () => {
     applyProjectFilter(location.hash ? location.hash.slice(1) : 'all', false);
   });
+}
+
+
+// Project section navigation: native links and a mobile disclosure work without JS.
+const sectionNav = document.querySelector('.section-jump');
+if (sectionNav) {
+  const disclosure = sectionNav.querySelector('details');
+  const summary = sectionNav.querySelector('summary');
+  const currentLabel = sectionNav.querySelector('.section-current');
+  const sectionLinks = [...sectionNav.querySelectorAll('a[href^="#"]')];
+  const sections = [...new Set(sectionLinks.map(link => link.hash.slice(1)))]
+    .map(id => document.getElementById(id)).filter(Boolean);
+  function syncNavHeight() {
+    if (header) document.documentElement.style.setProperty('--site-header-height', header.offsetHeight + 'px');
+    document.documentElement.style.setProperty('--section-jump-height', sectionNav.offsetHeight + 'px');
+  }
+  function syncCurrentSection() {
+    const threshold = (header?.offsetHeight || 76) + sectionNav.offsetHeight + 40;
+    let current = sections[0];
+    sections.forEach(section => {
+      if (section.getBoundingClientRect().top <= threshold) current = section;
+    });
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 3) {
+      current = sections[sections.length - 1];
+    }
+    sectionLinks.forEach(link => {
+      const active = link.hash === '#' + current?.id;
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    const activeLink = sectionLinks.find(link => link.hash === '#' + current?.id);
+    if (currentLabel && activeLink) currentLabel.textContent = activeLink.textContent;
+  }
+  sectionLinks.forEach(link => link.addEventListener('click', () => {
+    if (disclosure) disclosure.open = false;
+    const target = document.getElementById(link.hash.slice(1));
+    const focusTarget = target?.querySelector('h1,h2,h3') || target;
+    if (focusTarget) {
+      focusTarget.setAttribute('tabindex', '-1');
+      focusTarget.focus({preventScroll:true});
+    }
+  }));
+  sectionNav.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && disclosure?.open) {
+      disclosure.open = false;
+      summary.focus();
+    }
+  });
+  document.addEventListener('click', event => {
+    if (disclosure?.open && !sectionNav.contains(event.target)) disclosure.open = false;
+  });
+  let navFramePending = false;
+  window.addEventListener('scroll', () => {
+    if (navFramePending) return;
+    navFramePending = true;
+    requestAnimationFrame(() => { syncCurrentSection(); navFramePending = false; });
+  }, {passive:true});
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(() => { syncNavHeight(); syncCurrentSection(); });
+    if (header) observer.observe(header);
+    observer.observe(sectionNav);
+  }
+  window.addEventListener('resize', () => { syncNavHeight(); syncCurrentSection(); });
+  syncNavHeight();
+  syncCurrentSection();
 }
