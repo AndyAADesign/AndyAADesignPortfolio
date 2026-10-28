@@ -237,3 +237,36 @@
  .order-evidence img { height:auto; max-height:340px; }
 }
 @media(prefers-reduced-motion:reduce) { .home-lead-tile { transition:none; } }
+
+/* v25: quiet, consistent feedback for pointer and keyboard navigation. */
+:is(.project-card,.home-lead-tile,.next-project-card,.art-card,.external-project-card) {
+  transition: opacity .35s ease, transform .35s ease, translate .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+:is(.project-card,.home-lead-tile,.next-project-card,.art-card,.external-project-card):focus-visible {
+  outline:2px solid var(--warm); outline-offset:5px;
+  border-color:var(--warm); box-shadow:0 12px 30px #0004;
+}
+.project-card:focus-visible .card-action { color:var(--accent); }
+:is(.card-action>span,.next-project-card>span:first-child,.external-arrow) { transition:translate .18s ease; }
+.button { transition:background-color .18s ease, border-color .18s ease, color .18s ease, translate .18s ease; }
+.button:focus-visible { outline:2px solid var(--warm); outline-offset:5px; }
+.about-example { color:var(--text); text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:4px; }
+.about-example:hover { color:var(--accent); }
+/* Keep screen previews steady; movement belongs to the whole card. */
+.project-card:hover .project-media img,.art-card:hover img { transform:none; }
+.project-card:hover .ui-preview-phones img:nth-child(2) { transform:translateY(20px); }
+.button:hover,.external-project-card:hover,.art-card:hover { transform:none; }
+@media (hover:hover) and (pointer:fine) {
+  :is(.project-card,.home-lead-tile,.next-project-card,.art-card,.external-project-card):hover {
+    translate:0 -3px; border-color:var(--accent); box-shadow:0 14px 36px #0005;
+  }
+  #featured .project-card:hover { border-color:var(--accent); box-shadow:0 14px 36px #0005; }
+  .project-card:hover .card-action>span,.next-project-card:hover>span:first-child { translate:3px 0; }
+  .button:hover { translate:0 -1px; border-color:var(--accent); }
+}
+@media (prefers-reduced-motion:reduce) {
+  :is(.project-card,.home-lead-tile,.next-project-card,.art-card,.external-project-card,.button),
+  :is(.card-action>span,.next-project-card>span:first-child,.external-arrow) { transition:none!important; translate:none!important; }
+  .button:hover .button-arrow,.contact-actions .button:hover .button-icon-img,
+  .external-project-card:hover .external-arrow,.filter-button:hover,.nav-links a.nav-button:hover { transform:none; }
+}

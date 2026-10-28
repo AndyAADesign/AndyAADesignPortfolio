@@ -1,4 +1,4 @@
-# Andrés Alvarez Portfolio — Featured Product Work (v24)
+# Andrés Alvarez Portfolio — Personality and Interaction Polish (v25)
 
 ## Navigation improvements
 - Header: Work, About and CV; the branded logo links home.
@@ -59,3 +59,9 @@ New images: assets/images/yoolmi/current-*.webp and assets/images/monster-route/
 - Xapontic documents five ordering steps with annotated screenshots.
 - English and Spanish updated; Game UI application route retained.
 - Static files for deployment; no live-site publishing performed.
+
+## v25 update
+
+- About copy connects games QA to the proposed Yoolmi login recovery state, in English and Spanish.
+- Subtle card lift, consistent hover feedback and keyboard focus; reduced-motion support.
+- Pending: Yoolmi interaction demo, awaiting Andy’s work. No demo added in this version.
